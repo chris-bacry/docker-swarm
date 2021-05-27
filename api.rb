@@ -2,7 +2,7 @@ require "sequel"
 require "sinatra"
 require "sinatra/sequel"
 
-set :database, ENV.delete("DATABASE_URL") || "postgresql://codificator:adminastor@localhost:5432/example"
+set :database, ENV.delete("DATABASE_URL") || "postgresql://codificator:adminastor@db:5432"
 set :logging, false
 
 migration "products table" do
