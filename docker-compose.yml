@@ -11,7 +11,13 @@ services:
       - 4567:4567
     volumes:
       - '.:/app'
+    environment:
+      RACK_ENV: production
+    command: bundle exec puma -b tcp://0.0.0.0 -p 4567 -w 1 -q --redirect-stderr /dev/null
     restart: always
+    deploy:
+      mode: replicated
+      replicas: 4
     depends_on:
       - db
 

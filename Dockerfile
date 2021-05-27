@@ -18,5 +18,5 @@ RUN bundle install
 COPY . . 
 
 #Executar a aplicação
-CMD ruby api.rb -s puma -o 0.0.0.0
+#CMD ruby api.rb -s puma -o 0.0.0.0
 EXPOSE 4567
