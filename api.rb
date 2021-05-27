@@ -27,7 +27,7 @@ get "/api/products/?" do
 
   dataset = database[:products]
   if params[:description]
-    dataset = dataset.where(Sequel.like(Sequel.function(:lower, :description), "#{params[:description]}%"))
+    dataset = dataset.where(Sequel.lit("description ~* ?", params[:description]))
   end
 
   dataset.all.to_json
