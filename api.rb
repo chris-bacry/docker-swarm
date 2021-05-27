@@ -2,7 +2,7 @@ require "sequel"
 require "sinatra"
 require "sinatra/sequel"
 
-set :database, ENV.delete("DATABASE_URL") || "postgresql://codificator:adminastor@localhost:5432/example"
+set :database, ENV.delete("DATABASE_URL") || "sqlite://products-sqlite3.db"
 set :logging, false
 
 migration "products table" do
@@ -27,7 +27,7 @@ get "/api/products/?" do
 
   dataset = database[:products]
   if params[:description]
-    dataset = dataset.where(Sequel.lit("description ~* ?", params[:description]))
+    dataset = dataset.where(Sequel.lit "LOWER(description) LIKE '%#{params[:description]}%'")
   end
 
   dataset.all.to_json
