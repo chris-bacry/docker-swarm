@@ -17,6 +17,5 @@ RUN bundle install
 # Copia nosso código para dentro do container
 COPY . . 
 
-#Executar a aplicação
-#CMD ruby api.rb -s puma -o 0.0.0.0
+#Liberar a porta
 EXPOSE 4567
